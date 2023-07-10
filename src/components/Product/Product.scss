@@ -1,0 +1,39 @@
+.image {
+    width: 100%;
+}
+.product {
+    margin: 10px;
+}
+.shoe-cont {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.shoes-data {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.shoe-name {
+    color: rgb(163, 10, 10);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.shoe-description {
+    color: #3c3c3c;
+}
+
+.shoe-price {
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+
+
+img {
+    width: 100%;
+}

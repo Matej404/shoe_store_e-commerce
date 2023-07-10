@@ -1,8 +1,8 @@
 import API from './client';
 
-export const fetchProduct = async() => {
+export const fetchProducts = async() => {
     try {
-        const response = await API.get('products');
+        const response = await API.get(`products`);
 
         return response.data;
     } catch(err) {

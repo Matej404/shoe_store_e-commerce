@@ -11,7 +11,7 @@ const productSlice = createSlice({
         builder
         .addCase(loadProducts.fulfilled, (state, action) => {
             const { products } = action.payload;
-            products.forEach(product => {
+            products.forEach((product) => {
                 const { id } = product;
                 state[id] = product;
             })
