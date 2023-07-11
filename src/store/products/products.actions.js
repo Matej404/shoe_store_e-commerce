@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProducts } from "../../apis/product";
+import { fetchProducts, fetchProduct } from "../../apis/product";
 
 export const loadProducts = createAsyncThunk(
     'products/loadProducts',
@@ -12,6 +12,21 @@ export const loadProducts = createAsyncThunk(
             }
         } catch(err) {
             throw err;
+        }
+    }
+)
+
+export const loadProduct = createAsyncThunk(
+    'product/loadProduct',
+    async(productId, thunkAPI) => {
+        try {
+            const response = await fetchProduct(productId);
+
+            return {
+                product: response
+            }
+        } catch(err) {
+            throw(err);
         }
     }
 )
