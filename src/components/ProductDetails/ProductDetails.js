@@ -11,13 +11,15 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.products);
     const product = products[productId];
-
+    
+      
     useEffect(() => {
         const load = async() => {
             await dispatch(loadProduct(productId))
         }
         load()
     }, [dispatch, productId]);
+    
 
     return(
         <div className="product-details-container">
@@ -26,9 +28,9 @@ const ProductDetails = () => {
           </div>
           <div className="product-data-size-add">
             <div className="product-data">
-              <h4 className="product-data-name">VANS CLASIC</h4>
-              <h4 className="product-data-description">OLD SKOOL SHOES</h4>
-              <h4 className="product-data-price">Price: $65.00</h4>
+              <h4 className="product-data-name">{product.name}</h4>
+              <h4 className="product-data-description">{product.description}</h4>
+              <h4 className="product-data-price">Price: ${product.price}</h4>
             </div>
             <div className="size-fit">
               <label for="my-select">SIZE & FIT</label>

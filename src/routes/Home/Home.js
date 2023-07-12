@@ -1,15 +1,13 @@
-import React, { useEffect, setState } from "react";
+import React, { useEffect } from "react";
 import './Home.css';
 import { useDispatch, useSelector } from "react-redux";
 import { loadProducts } from "../../store/products/products.actions";
 import Product from "../../components/Product/Product";
-import ProductDetails from "../../components/ProductDetails/ProductDetails";
 
 const Home = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.products);
 
-    //const [toggleProduct, onToggle] = setState("");
 
     useEffect(() => {
         const load = async() => {
@@ -18,15 +16,12 @@ const Home = () => {
         load()
     }, [dispatch])
 
+  
+
     return(
         <div className="home">
           { products && Object.keys(products).length > 0 && 
             Object.keys(products).map((product) => (
-            <div key={products[product].id}>
-
-                {/*toggleProduct === products[product].id ? (
-                    <ProductDetails />
-                ) : null */}
               <Product
                 key={products[product].id}
                 photo={products[product].photo}
@@ -35,7 +30,6 @@ const Home = () => {
                 price={products[product].price}
                 productId={products[product].id}
                />
-            </div>
             )) 
             }
         </div>

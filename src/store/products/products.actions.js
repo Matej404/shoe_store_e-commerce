@@ -17,7 +17,7 @@ export const loadProducts = createAsyncThunk(
 )
 
 export const loadProduct = createAsyncThunk(
-    'product/loadProduct',
+    'products/loadProduct',
     async(productId, thunkAPI) => {
         try {
             const response = await fetchProduct(productId);
