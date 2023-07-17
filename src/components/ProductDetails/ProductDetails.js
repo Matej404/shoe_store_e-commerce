@@ -1,28 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './ProductDetails.css';
-import { useDispatch, useSelector } from "react-redux";
-import { loadProduct } from "../../store/products/products.actions";
-import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import shoes from "../Product/shoes3.webp";
+import CloseIcon from '@mui/icons-material/Close';
+import { setSelectedProductId } from "../../store/products/product.reducers";
 
-const ProductDetails = () => {
-    //access the parameters from the URL
-    const { productId } = useParams();
-    const dispatch = useDispatch();
+const ProductDetails = ({ productId }) => {
+  const dispatch = useDispatch();
     const products = useSelector(state => state.products);
     const product = products[productId];
-    
-      
-    useEffect(() => {
-        const load = async() => {
-            await dispatch(loadProduct(productId))
-        }
-        load()
-    }, [dispatch, productId]);
+
+    const handleCloce = () => {
+      dispatch(setSelectedProductId(null));
+    }
     
 
     return(
         <div className="product-details-container">
+          <CloseIcon className="close" onClick={handleCloce} />
           <div className="product-image">
             <img src={shoes} alt="shoes" />
           </div>
