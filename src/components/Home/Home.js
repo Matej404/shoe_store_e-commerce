@@ -5,11 +5,14 @@ import { setSelectedProductId } from "../../store/products/product.reducers";
 import Product from "../Product/Product";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import { loadProducts } from "../../store/products/products.actions";
+import Cart from '../Cart/Cart'
 
 const Home = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.products);
-    const selectedProductId = useSelector((state) => state.products.selectedProductId);
+    const { selectedProductId } = useSelector((state) => state.products);
+
+    const { isAuthenticated } = useSelector((state) => state.auth)
 
     const handleProductClick = (productId) => {
         if (productId === selectedProductId) {
@@ -28,6 +31,7 @@ const Home = () => {
   
 
     return(
+      <div>
       <div className="home">
   {Object.keys(products).map((productId) => {
 
@@ -48,6 +52,7 @@ const Home = () => {
       </React.Fragment>
     );
   })}
+</div>
 </div>
     )
 }

@@ -30,7 +30,6 @@
 .product-data-size-add {
     width: 45%;
     height: 90%;
-    //background-color: aqua;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,7 +41,6 @@
 }
 
 .product-data {
-    //background-color: aquamarine;
     height: 150px;
     display: flex;
     flex-direction: column;
@@ -64,7 +62,6 @@
     min-height: 300px;
     display: flex;
     justify-content: center;
-    //align-items: center;
     label {
         text-decoration: underline;
         margin-bottom: 5px;

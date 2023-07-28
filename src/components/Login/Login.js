@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextFieldComp from "../TextField/TextField";
-import { Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../store/auth/auth.actions";
+import { toggleLogin, closeLogin } from "../../store/auth/auth.reducers";
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const { isAuthenticated, error, showLogin } = useSelector(state => state.auth);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const handleLogin = async(credentials) => {
+        try {
+            setIsLoading(true)
+            await dispatch(loginUser(credentials))
+            setIsLoading(false)
+            dispatch(toggleLogin())
+        } catch(err) {
+            setIsLoading(false)
+        }
+    }
+
+    const handleCloseLogin = () => {
+        dispatch(closeLogin());
+    }
 
     const loginSchema = Yup.object().shape({
         email: Yup.string()
@@ -17,14 +39,21 @@ const Login = () => {
     })
 
     return(
-          <div className="formComp">
-            <div className="formWrapper">
+        <div>
+            {!isAuthenticated && showLogin &&
+          <div className="form-comp">
+            <div className="form-wrapper">
               <Formik
                 initialValues={{email: '', password: ''}}
                 validationSchema={loginSchema}
                 validateOnBlur
+                onSubmit={ async(value) => {
+                    const { email, password } = value;
+                    await handleLogin({ username: email, password })
+                }}
               >
-                <Form className="baseForm">
+                <Form className="base-form">
+                <CloseIcon className="close-login" onClick={handleCloseLogin} />
                   <header className="faseFormHeader">
                     <h1 className="baseFormHeading">Sign in</h1>
                   </header>
@@ -39,7 +68,7 @@ const Login = () => {
                     id="password-input" 
                     type="password"
                   />
-                  <button className="sign-in">SIGN IN</button>
+                  <button className="sign-in" type="submit"  >SIGN IN</button>
                   <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                     <h3>NOT A MEMBER?</h3>
                   </div>
@@ -47,7 +76,9 @@ const Login = () => {
                 </Form>
               </Formik>
             </div>
-          </div>
+          </div>}
+          {/* isAuthenticated && <Cart /> */}
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import shoes from "./shoes3.webp";
 import "./Product.css";
 
 
-const Product = ({ photo, name, description, price, productId, selectedProductId, onClick }) => {
+const Product = ({ photo, name, description, price, onClick }) => {
 
     return(
         <div className="product" >
@@ -12,7 +12,7 @@ const Product = ({ photo, name, description, price, productId, selectedProductId
             <div className="shoes-data">
               <h3 className="shoe-name">{name}</h3>
               <p className="shoe-description">{description}</p>
-              <p className="shoe-price">{price}</p>
+              <p className="shoe-price">£{price}</p>
             </div>
           </div>
         </div>
