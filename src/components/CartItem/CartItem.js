@@ -4,7 +4,7 @@ import shoes from "../Product/shoes3.webp";
 import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 
-const CartItem = () => {
+const CartItem = ({ description, price }) => {
 
     return(
         <div className="cart-item">
@@ -13,7 +13,7 @@ const CartItem = () => {
               <img src={shoes} alt="shose" />
             </div>
             <div className="item-content-info">
-              <h3>KNU SKOOL SHOES</h3>
+              <h3>{description}</h3>
               <p>Size:<span> 2.5</span></p>
             <div className="update-delete-item">
               <div className="update item">
@@ -43,7 +43,7 @@ const CartItem = () => {
               </select>
             </div>
             <div className="price">
-                <h3>$ 75.00</h3>
+                <h3>$ {price}</h3>
             </div>
           </div>
         </div>

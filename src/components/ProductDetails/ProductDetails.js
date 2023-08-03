@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './ProductDetails.css';
 import { useSelector, useDispatch } from "react-redux";
 import shoes from "../Product/shoes3.webp";
 import CloseIcon from '@mui/icons-material/Close';
 import { setSelectedProductId } from "../../store/products/product.reducers";
+import { addItem } from "../../store/cart/cart.action";
+import { loadProduct } from "../../store/products/products.actions";
+
 
 const ProductDetails = ({ productId }) => {
   const dispatch = useDispatch();
@@ -13,7 +16,19 @@ const ProductDetails = ({ productId }) => {
     const handleCloce = () => {
       dispatch(setSelectedProductId(null));
     }
+
+    async function handleAddToCart() {
+      await dispatch(addItem(product));
+    }
     
+    
+useEffect(() => {
+  if (!products[productId]) {
+    (async function load() {
+      await dispatch(loadProduct(productId))
+    })();
+  }
+}, [dispatch, products, productId]);
 
     return(
         <div className="product-details-container">
@@ -28,7 +43,7 @@ const ProductDetails = ({ productId }) => {
               <h4 className="product-data-price">Price: ${product.price}</h4>
             </div>
             <div className="size-fit">
-              <label for="my-select">SIZE & FIT</label>
+              <label htmlFor="my-select">SIZE & FIT</label>
               <select id="my-select" name="my-select">
                 <option value="option1">Select a size</option>
                 <option value="option2">2.5</option>
@@ -38,7 +53,7 @@ const ProductDetails = ({ productId }) => {
               </select>
             </div>
             <div className="add-to-cart">
-              <button>ADD TO CART</button>
+              <button onClick={handleAddToCart}>ADD TO CART</button>
             </div>
           </div>
         </div>

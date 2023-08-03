@@ -45,6 +45,7 @@
 .header-right .cart {
   font-size: 32px;
   margin-left: 15px;
+  color: black;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }

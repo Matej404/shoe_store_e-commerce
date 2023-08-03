@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import logo from "./logo.png";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const Header = ({ onLoginClick }) => {
@@ -19,7 +20,9 @@ const Header = ({ onLoginClick }) => {
             {!isAuthenticated && 
             <Button className="login-buttom" variant="text" onClick={onLoginClick} >LOG IN</Button>}
             {isAuthenticated && 
-            <AddShoppingCartIcon className="cart" />}
+            <Link className="cart" to={`/cart`}>
+              <AddShoppingCartIcon className="cart" />
+            </Link>}
           </div>
         </div>
     )

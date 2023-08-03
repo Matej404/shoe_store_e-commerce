@@ -5,7 +5,6 @@ import { setSelectedProductId } from "../../store/products/product.reducers";
 import Product from "../Product/Product";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import { loadProducts } from "../../store/products/products.actions";
-import Cart from '../Cart/Cart'
 
 const Home = () => {
     const dispatch = useDispatch();
